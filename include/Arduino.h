@@ -66,6 +66,8 @@ inline double max(double a, double b) { return ((a)>(b) ? (a) : (b)); }
 #define degrees(rad) ((rad)*RAD_TO_DEG)
 #define sq(x) ((x)*(x))
 
+long map(long x, long in_min, long in_max, long out_min, long out_max);
+
 typedef bool boolean;
 typedef uint8_t byte;
 

@@ -94,7 +94,7 @@ static const bool boardType3ValidPins[BOARD_TYPE_MAX_PINS] = {
         true,  true,  true,  true,  false, false, false, false,
 };
 
-static bool isPinValid(uint8_t pin) {
+bool isPinValid(uint8_t pin) {
 	if(pin >= BOARD_TYPE_MAX_PINS) {
 		return false;
 	}
@@ -137,4 +137,8 @@ void digitalWrite(uint8_t pin, uint8_t val) {
 	if(isPinValid(pin) && isLogicLevelValid(val)) {
                 gpioWrite(pin, val);
         }
+}
+
+long map(long x, long in_min, long in_max, long out_min, long out_max) {
+	return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 }
