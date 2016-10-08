@@ -25,9 +25,9 @@
 #endif
 
 #define SPI_MODE0 0x00
-#define SPI_MODE1 0x04
-#define SPI_MODE2 0x08
-#define SPI_MODE3 0x0C
+#define SPI_MODE1 0x01
+#define SPI_MODE2 0x02
+#define SPI_MODE3 0x03
 
 // SPI Speed taking a 16 Mhz arduino clock speed
 #define SPI_CLOCK_DIV2 8000000

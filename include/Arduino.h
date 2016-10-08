@@ -66,8 +66,36 @@ inline double max(double a, double b) { return ((a)>(b) ? (a) : (b)); }
 #define degrees(rad) ((rad)*RAD_TO_DEG)
 #define sq(x) ((x)*(x))
 
-void pinMode(uint8_t, uint8_t);
-void digitalWrite(uint8_t, uint8_t);
+typedef bool boolean;
+typedef uint8_t byte;
+
+/// <summary>
+/// Sets the GPIO mode, typically input or output.
+/// There are 32 General Purpose Input Outputs (GPIO) named GPIO0 through GPIO31.
+/// The user configurable GPIO are marked with an X in the following table:
+/// <code>
+///           0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15
+/// Type 1    X  X  -  -  X  -  -  X  X  X  X  X  -  -  X  X
+/// Type 2    -  -  X  X  X  -  -  X  X  X  X  X  -  -  X  X
+/// Type 3          X  X  X  X  X  X  X  X  X  X  X  X  X  X
+///
+///          16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31
+/// Type 1    -  X  X  -  -  X  X  X  X  X  -  -  -  -  -  -
+/// Type 2    -  X  X  -  -  -  X  X  X  X  -  X  X  X  X  X
+/// Type 3    X  X  X  X  X  X  X  X  X  X  X  X  -  -  -  -
+/// </code>
+/// </summary>
+/// <param name="pin">A Broadcom numbered GPIO, in the range 0-31.</param>
+/// <param name="mode">The operational mode of a GPIO, normally INPUT or
+/// OUTPUT.</param>
+void pinMode(uint8_t pin, uint8_t mode);
+/// <summary>
+/// Sets the GPIO level, on or off.
+/// If PWM or servo pulses are active on the GPIO they are switched off.
+/// </summary>
+/// <param name="pin">A Broadcom numbered GPIO, in the range 0-31.</param>
+/// <param name="val">The level of a GPIO. Low or High.</param>
+void digitalWrite(uint8_t pin, uint8_t val);
 int digitalRead(uint8_t);
 
 #endif
