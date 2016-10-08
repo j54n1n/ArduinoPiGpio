@@ -21,8 +21,10 @@
 #include <Arduino.h>
 #include <pigpio.h>
 #include <signal.h>
+#include <stdio.h>
 
 extern int spiHandle;
+extern FILE* eeprom_image;
 
 static volatile bool isSignalInterruptAsserted = false;
 
@@ -46,6 +48,9 @@ int main() {
 	}
 	if(spiHandle > 0) {
 		spiClose(spiHandle);
+	}
+	if(eeprom_image > NULL) {
+		fclose(eeprom_image);
 	}
 	gpioTerminate();
 	return 0;

@@ -5,16 +5,19 @@
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
 ../src/Core.cpp \
+../src/EEPROM.cpp \
 ../src/SPI.cpp \
 ../src/Servo.cpp 
 
 OBJS += \
 ./src/Core.o \
+./src/EEPROM.o \
 ./src/SPI.o \
 ./src/Servo.o 
 
 CPP_DEPS += \
 ./src/Core.d \
+./src/EEPROM.d \
 ./src/SPI.d \
 ./src/Servo.d 
 
