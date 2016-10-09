@@ -47,3 +47,10 @@ uint8_t SPIClass::transfer(uint8_t data) {
 	}
 	return 0;
 }
+
+void SPIClass::transfer(void *buf, size_t count) {
+	if(spiHandle <= 0) {
+                return;
+        }
+        spiXfer(spiHandle, (char *)buf, (char *)buf, count);
+}
