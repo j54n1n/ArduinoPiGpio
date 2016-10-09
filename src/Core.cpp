@@ -87,6 +87,7 @@ static BoardType getBoardType() {
 	return BOARD_TYPE_INVALID;
 }
 
+// Raspberry Pi Model B rev 1.0
 static const bool boardType1ValidPins[BOARD_TYPE_MAX_PINS] = {
 	true,  true,  false, false, true,  false, false, true,
         true,  true,  true,  true,  false, false, true,  true,
@@ -94,13 +95,15 @@ static const bool boardType1ValidPins[BOARD_TYPE_MAX_PINS] = {
         true,  true,  false, false, false, false, false, false,
 };
 
+// Raspberry Pi Model A/B rev 2.0
 static const bool boardType2ValidPins[BOARD_TYPE_MAX_PINS] = {
         false, false, true,  true,  true,  false, false, true,
         true,  true,  true,  true,  false, false, true,  true,
         false, true,  true,  false, false, false, true,  true,
-        true,  true,  false, true,  true,  true,  true,  true,
+        true,  true,  false, true,  false, false, false, false,
 };
 
+// Raspberry Pi 1 Model A+/B+, Pi 2 Model B, Pi 3 Model B
 static const bool boardType3ValidPins[BOARD_TYPE_MAX_PINS] = {
         false, false, true,  true,  true,  true,  true,  true,
         true,  true,  true,  true,  true,  true,  true,  true,

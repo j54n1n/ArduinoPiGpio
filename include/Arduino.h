@@ -19,7 +19,7 @@
 #define Arduino_h
 
 // Version code Mmmff, M=Major, mm=minor, ff=bugfix
-#define ARDUINO_PI_GPIO 00100
+#define ARDUINO_PI_GPIO 00101
 
 #include <stdlib.h>
 #include <stdbool.h>
@@ -84,11 +84,11 @@ typedef uint8_t byte;
 ///           0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15
 /// Type 1    X  X  -  -  X  -  -  X  X  X  X  X  -  -  X  X
 /// Type 2    -  -  X  X  X  -  -  X  X  X  X  X  -  -  X  X
-/// Type 3          X  X  X  X  X  X  X  X  X  X  X  X  X  X
+/// Type 3    -  -  X  X  X  X  X  X  X  X  X  X  X  X  X  X
 ///
 ///          16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31
 /// Type 1    -  X  X  -  -  X  X  X  X  X  -  -  -  -  -  -
-/// Type 2    -  X  X  -  -  -  X  X  X  X  -  X  X  X  X  X
+/// Type 2    -  X  X  -  -  -  X  X  X  X  -  X  -  -  -  -
 /// Type 3    X  X  X  X  X  X  X  X  X  X  X  X  -  -  -  -
 /// </code>
 /// </summary>
