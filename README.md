@@ -10,5 +10,5 @@ Run the make tool from within the Release folder.
 ## Compile ArduinoPiGpio with your sketch
 Copy this ArduinoPiGpio folder to your sketchbook and compile either with:
 
-- g++ -pthread -LArduinoPiGpio/Release/ -lArduinoPiGpio -IArduinoPiGpio/include/ -lpigpio -lrt sketch/sketch.cpp
-- g++ -pthread -LArduinoPiGpio/Release/ -lArduinoPiGpio -IArduinoPiGpio/include/ -lpigpio -lrt -x c++ sketch/sketch.ino
+- g++ -pthread -IArduinoPiGpio/include/ sketch/sketch.cpp -LArduinoPiGpio/Release/ -lArduinoPiGpio -lpigpio -lrt
+- g++ -pthread -IArduinoPiGpio/include/ -x c++ sketch/sketch.ino -LArduinoPiGpio/Release/ -lArduinoPiGpio -lpigpio -lrt

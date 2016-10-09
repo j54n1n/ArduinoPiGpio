@@ -22,15 +22,22 @@
 #include <pigpio.h>
 #include <signal.h>
 #include <stdio.h>
+#include <time.h>
 
 extern int spiHandle;
 extern FILE* eeprom_image;
 
+static timespec arduinoTimestamp;
 static volatile bool isSignalInterruptAsserted = false;
 
 static void signalHandler(int signal) {
 	isSignalInterruptAsserted = true;
 }
+
+static const timespec cpuTime = {
+	.tv_sec = 0,
+	.tv_nsec = 1000000000UL / F_CPU
+};
 
 int main() {
 	if(gpioInitialise() < 0) {
@@ -39,9 +46,11 @@ int main() {
 	if(gpioSetSignalFunc(SIGINT, signalHandler) < 0) {
 		return -1;
 	}
+	clock_gettime(CLOCK_REALTIME, &arduinoTimestamp);
 	setup();
 	while(true) {
 		loop();
+		nanosleep(&cpuTime, NULL);
 		if(isSignalInterruptAsserted) {
 			break;
 		}
@@ -147,3 +156,39 @@ void digitalWrite(uint8_t pin, uint8_t val) {
 long map(long x, long in_min, long in_max, long out_min, long out_max) {
 	return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 }
+
+
+unsigned long millis(void) {
+	struct timespec timenow, start, end;
+	clock_gettime(CLOCK_REALTIME, &timenow);
+	start = arduinoTimestamp;
+	end = timenow;
+	// timeDiffmillis:
+	return ((end.tv_sec - start.tv_sec) * 1e3 + (end.tv_nsec - start.tv_nsec) * 1e-6);
+}
+
+unsigned long micros(void) {
+	timespec timenow, start, end;
+    	clock_gettime(CLOCK_REALTIME, &timenow);
+    	start = arduinoTimestamp;
+    	end = timenow;
+    	// timeDiffmicros
+	return ((end.tv_sec - start.tv_sec) * 1e6 + (end.tv_nsec - start.tv_nsec) * 1e-3);
+}
+
+void delay(unsigned long millis) {
+	delayMicroseconds(millis * 1000);
+}
+
+void delayMicroseconds(unsigned int us) {
+	const timespec delayTime = {
+        .tv_sec = 0,
+        .tv_nsec = 1000L * (long)us
+	};
+	nanosleep(&delayTime, NULL);
+}
+
+
+HardwareSerial Serial;
+
+void HardwareSerial::begin(unsigned long baud) {}

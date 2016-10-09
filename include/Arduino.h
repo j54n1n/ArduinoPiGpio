@@ -27,6 +27,8 @@
 void setup();
 void loop();
 
+#define F_CPU 16000000UL
+
 #define HIGH 0x1
 #define LOW  0x0
 
@@ -99,5 +101,21 @@ void pinMode(uint8_t pin, uint8_t mode);
 /// <param name="val">The level of a GPIO. Low or High.</param>
 void digitalWrite(uint8_t pin, uint8_t val);
 int digitalRead(uint8_t);
+
+// Returns the time in milliseconds since the program started.
+unsigned long millis(void);
+// Returns the time in microseconds since the program started.
+unsigned long micros(void);
+// Sleep the specified milliseconds.
+void delay(unsigned long millis);
+// Sleep the specified microseconds.
+void delayMicroseconds(unsigned int us);
+
+class HardwareSerial {
+public:
+	void begin(unsigned long baud);
+};
+
+extern HardwareSerial Serial;
 
 #endif
