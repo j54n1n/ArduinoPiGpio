@@ -17,7 +17,7 @@
 
 SPIClass SPI;
 
-int spiHandle = 0;
+int spiHandle = PI_BAD_SPI_CHANNEL;
 
 enum DefaultSPISettings {
 	DefaultSpiChannel = 0,
@@ -26,7 +26,7 @@ enum DefaultSPISettings {
 };
 
 void SPIClass::begin() {
-	if(spiHandle > 0) {
+	if(spiHandle >= 0) {
 		spiClose(spiHandle);
 	}
 	spiHandle = spiOpen(
@@ -35,7 +35,7 @@ void SPIClass::begin() {
 }
 
 uint8_t SPIClass::transfer(uint8_t data) {
-	if(spiHandle <= 0) {
+	if(spiHandle < 0) {
 		return 0;
 	}
 	const unsigned bytes = 1;
@@ -49,7 +49,7 @@ uint8_t SPIClass::transfer(uint8_t data) {
 }
 
 void SPIClass::transfer(void *buf, size_t count) {
-	if(spiHandle <= 0) {
+	if(spiHandle < 0) {
                 return;
         }
         spiXfer(spiHandle, (char *)buf, (char *)buf, count);
