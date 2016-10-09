@@ -18,6 +18,9 @@
 #ifndef Arduino_h
 #define Arduino_h
 
+// Version code Mmmff, M=Major, mm=minor, ff=bugfix
+#define ARDUINO_PI_GPIO 00100
+
 #include <stdlib.h>
 #include <stdbool.h>
 #include <stdint.h>
